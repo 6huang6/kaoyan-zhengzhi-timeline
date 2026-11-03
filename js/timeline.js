@@ -136,7 +136,8 @@
     var sp = lay.spine;
     var vis = {}, arr = C.visibleNodes(), i;
     for (i = 0; i < arr.length; i++) vis[arr[i].id] = 1;
-    var showLab = S.zoom >= 0.30;
+    var narrow = (window.innerWidth || 999) < 700;
+    var showLab = S.zoom >= (narrow ? 0.20 : 0.30);
     var ordered = C.NODES.slice().sort(function (a, b) { return a.x - b.x; });
     var sz = C.clamp(14 * Math.pow(S.zoom, 0.42), 7, 18);
     var frag = document.createDocumentFragment();
@@ -171,6 +172,8 @@
     for (i = 0; i < ordered.length; i++) {
       var m = ordered[i];
       if (!vis[m.id]) continue;
+      // 手机上只给五星考点挂标签，否则一屏挤不下
+      if (narrow && S.zoom < 0.45 && m.star < 4) { m.lane = null; continue; }
       var txt = m.y + ' ' + m.label;
       var w = measure(txt, m.star >= 5, maxW);
       var down = m.track === 'm';
@@ -527,8 +530,9 @@
     el.zoomTxt = C.qs('#zoomTxt');
     el.eraChips = C.qs('#eraChips');
 
-    S.zoom = C.store.get('zoom', 0.36);
-    if (!(S.zoom >= MIN_ZOOM && S.zoom <= MAX_ZOOM)) S.zoom = 0.36;
+    var zDef = (window.innerWidth || 999) < 700 ? 0.30 : 0.36;
+    S.zoom = C.store.get('zoom', zDef);
+    if (!(S.zoom >= MIN_ZOOM && S.zoom <= MAX_ZOOM)) S.zoom = zDef;
 
     renderEraChips();
     computeLayout();
@@ -554,5 +558,8 @@
     setFilter: setFilter
   };
 })(window);
+
+
+
 
 

@@ -113,6 +113,14 @@
       W.TL.renderAll();
     }
     if (S.home && W.TL) W.TL.renderAll();
+
+    // 触屏首次进入给一次操作提示（只提示一次）
+    if (window.matchMedia && window.matchMedia('(pointer:coarse)').matches && !C.store.get('touchTip', 0)) {
+      C.store.set('touchTip', 1);
+      setTimeout(function () {
+        C.toast('拖动平移 · 双指缩放 · 点圆点看考点', 3200);
+      }, 900);
+    }
   }
 
   W.App = { init: init, view: view, updateStat: updateStat };
