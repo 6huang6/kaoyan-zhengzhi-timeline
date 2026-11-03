@@ -1,0 +1,647 @@
+{
+  "note": "大纲补遗计划：53 条缺口 → 13 条进时间线（mode=node）+ 40 条补遗卡片（mode=note）。字段规范见 docs/SUPPLEMENTS.md。",
+  "batches": [
+    {
+      "batch": "wa",
+      "owner": "writer-e1",
+      "out": "data/sup/wa.json",
+      "items": [
+        {
+          "id": "sup-sg-1",
+          "part": "史纲",
+          "ol": "大纲·史纲1章1节",
+          "point": "近代中国的社会主要矛盾和两大历史任务",
+          "mode": "note",
+          "anchor": "1840_opium_war"
+        },
+        {
+          "id": "sup-sg-2",
+          "part": "史纲",
+          "ol": "大纲·史纲1章2节",
+          "point": "文化渗透",
+          "mode": "note",
+          "anchor": "1843_treaties"
+        },
+        {
+          "id": "sup-sg-3",
+          "part": "史纲",
+          "ol": "大纲·史纲1章4节",
+          "point": "反侵略战争的失败及其原因",
+          "mode": "note",
+          "anchor": "1901_xinchou"
+        },
+        {
+          "id": "sup-sg-4",
+          "part": "史纲",
+          "ol": "大纲·史纲4章2节",
+          "point": "中国共产党人的初心使命",
+          "mode": "note",
+          "anchor": "1921_cpc1"
+        },
+        {
+          "id": "1927_nanjing_gov",
+          "part": "史纲",
+          "ol": "大纲·史纲5章1节",
+          "point": "国民党在全国统治的建立及其性质",
+          "mode": "node",
+          "node": {
+            "y": 1927,
+            "mo": 4,
+            "d": 18,
+            "label": "南京国民政府成立",
+            "era": 2,
+            "track": "s",
+            "cat": "事件",
+            "ch": "纲要·5章1节",
+            "place": "南京",
+            "prov": "江苏",
+            "threads": [
+              "path",
+              "party"
+            ]
+          }
+        },
+        {
+          "id": "sup-sg-5",
+          "part": "史纲",
+          "ol": "大纲·史纲5章2节",
+          "point": "总结历史经验，迎接全民族抗战",
+          "mode": "note",
+          "anchor": "1936_huishi"
+        },
+        {
+          "id": "1936_kanglian",
+          "part": "史纲",
+          "ol": "大纲·史纲6章2节",
+          "point": "中国共产党举起武装抗日的旗帜",
+          "mode": "node",
+          "node": {
+            "y": 1936,
+            "mo": 2,
+            "d": 0,
+            "label": "东北抗日联军成立",
+            "era": 2,
+            "track": "s",
+            "cat": "事件",
+            "ch": "纲要·6章2节",
+            "place": "哈尔滨",
+            "prov": "黑龙江",
+            "threads": [
+              "army",
+              "inv"
+            ]
+          }
+        },
+        {
+          "id": "1938_canyihui",
+          "part": "史纲",
+          "ol": "大纲·史纲6章4节",
+          "point": "国民参政会的成立及工厂、学校内迁",
+          "mode": "node",
+          "node": {
+            "y": 1938,
+            "mo": 6,
+            "d": 0,
+            "label": "国民参政会成立",
+            "era": 2,
+            "track": "s",
+            "cat": "制度",
+            "ch": "纲要·6章4节",
+            "place": "汉口",
+            "prov": "湖北",
+            "threads": [
+              "unt"
+            ]
+          }
+        },
+        {
+          "id": "1944_yuxianggui",
+          "part": "史纲",
+          "ol": "大纲·史纲6章4节",
+          "point": "战略相持阶段的正面战场",
+          "mode": "node",
+          "node": {
+            "y": 1944,
+            "mo": 4,
+            "d": 0,
+            "label": "豫湘桂战役",
+            "era": 2,
+            "track": "s",
+            "cat": "战争",
+            "ch": "纲要·6章4节",
+            "place": "洛阳",
+            "prov": "河南",
+            "threads": [
+              "army",
+              "inv"
+            ]
+          }
+        },
+        {
+          "id": "1940_sansanzhi",
+          "part": "史纲",
+          "ol": "大纲·史纲6章5节",
+          "point": "抗日民主根据地的建设",
+          "mode": "node",
+          "node": {
+            "y": 1940,
+            "mo": 3,
+            "d": 0,
+            "label": "抗日根据地三三制政权",
+            "era": 2,
+            "track": "s",
+            "cat": "制度",
+            "ch": "纲要·6章5节",
+            "place": "延安",
+            "prov": "陕西",
+            "threads": [
+              "party",
+              "farm"
+            ]
+          }
+        },
+        {
+          "id": "sup-sg-6",
+          "part": "史纲",
+          "ol": "大纲·史纲6章5节",
+          "point": "大后方的抗日民主运动和进步文化工作",
+          "mode": "note",
+          "anchor": "1941_wannan"
+        },
+        {
+          "id": "1947_diertiao",
+          "part": "史纲",
+          "ol": "大纲·史纲7章2节",
+          "point": "第二条战线的形成和发展",
+          "mode": "node",
+          "node": {
+            "y": 1947,
+            "mo": 5,
+            "d": 20,
+            "label": "反饥饿反内战反迫害运动",
+            "era": 2,
+            "track": "s",
+            "cat": "运动",
+            "ch": "纲要·7章2节",
+            "place": "南京",
+            "prov": "江苏",
+            "threads": [
+              "unt",
+              "path"
+            ]
+          }
+        },
+        {
+          "id": "1948_kouhao",
+          "part": "史纲",
+          "ol": "大纲·史纲7章3节",
+          "point": "各民主党派的历史发展、中共与民主党派的合作、第三条道路的幻灭、多党合作和政治协商格局的形成",
+          "mode": "node",
+          "node": {
+            "y": 1948,
+            "mo": 4,
+            "d": 30,
+            "label": "中共中央发布五一口号",
+            "era": 2,
+            "track": "s",
+            "cat": "事件",
+            "ch": "纲要·7章3节",
+            "place": "西柏坡",
+            "prov": "河北",
+            "threads": [
+              "unt",
+              "party"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "batch": "wb",
+      "owner": "writer-e2",
+      "out": "data/sup/wb.json",
+      "items": [
+        {
+          "id": "sup-sg-7",
+          "part": "史纲",
+          "ol": "大纲·史纲8章1节",
+          "point": "教育科学文化卫生事业除旧布新",
+          "mode": "note",
+          "anchor": "1950_landreform"
+        },
+        {
+          "id": "1952_sanfan",
+          "part": "史纲",
+          "ol": "大纲·史纲8章1节",
+          "point": "加强中国共产党的自身建设",
+          "mode": "node",
+          "node": {
+            "y": 1952,
+            "mo": 1,
+            "d": 0,
+            "label": "三反五反运动",
+            "era": 3,
+            "track": "s",
+            "cat": "运动",
+            "ch": "纲要·8章1节",
+            "place": "北京",
+            "prov": "北京",
+            "threads": [
+              "party"
+            ]
+          }
+        },
+        {
+          "id": "1980_lingdao",
+          "part": "史纲",
+          "ol": "大纲·史纲9章1节",
+          "point": "党和国家领导制度的改革",
+          "mode": "node",
+          "node": {
+            "y": 1980,
+            "mo": 8,
+            "d": 18,
+            "label": "《党和国家领导制度的改革》",
+            "era": 5,
+            "track": "s",
+            "cat": "著作",
+            "ch": "纲要·9章1节",
+            "place": "北京",
+            "prov": "北京",
+            "threads": [
+              "party",
+              "path"
+            ]
+          }
+        },
+        {
+          "id": "2013_qiangjun",
+          "part": "史纲",
+          "ol": "大纲·史纲10章1节",
+          "point": "全面推进国防和军队现代化建设",
+          "mode": "node",
+          "node": {
+            "y": 2013,
+            "mo": 3,
+            "d": 11,
+            "label": "党在新时代的强军目标",
+            "era": 6,
+            "track": "x",
+            "cat": "建设",
+            "ch": "纲要·10章1节",
+            "place": "北京",
+            "prov": "北京",
+            "threads": [
+              "army"
+            ]
+          }
+        },
+        {
+          "id": "2014_guoan",
+          "part": "史纲",
+          "ol": "大纲·史纲10章1节",
+          "point": "全面加强国家安全",
+          "mode": "node",
+          "node": {
+            "y": 2014,
+            "mo": 4,
+            "d": 15,
+            "label": "总体国家安全观提出",
+            "era": 6,
+            "track": "x",
+            "cat": "建设",
+            "ch": "纲要·10章1节",
+            "place": "北京",
+            "prov": "北京",
+            "threads": [
+              "party",
+              "army"
+            ]
+          }
+        },
+        {
+          "id": "sup-sg-9",
+          "part": "史纲",
+          "ol": "大纲·史纲10章2节",
+          "point": "在应对风险挑战中推进各项事业",
+          "mode": "note",
+          "anchor": "2020_poor"
+        },
+        {
+          "id": "2020_gangqu",
+          "part": "史纲",
+          "ol": "大纲·史纲10章2节",
+          "point": "坚持「一国两制」和推进祖国统一",
+          "mode": "node",
+          "node": {
+            "y": 2020,
+            "mo": 6,
+            "d": 30,
+            "label": "香港国安法施行",
+            "era": 6,
+            "track": "x",
+            "cat": "制度",
+            "ch": "纲要·10章2节",
+            "place": "香港",
+            "prov": "香港",
+            "threads": [
+              "dip",
+              "path"
+            ]
+          }
+        },
+        {
+          "id": "2021_shisiwu",
+          "part": "史纲",
+          "ol": "大纲·史纲10章3节",
+          "point": "推动「十四五」时期高质量发展",
+          "mode": "node",
+          "node": {
+            "y": 2021,
+            "mo": 3,
+            "d": 11,
+            "label": "「十四五」规划纲要通过",
+            "era": 6,
+            "track": "x",
+            "cat": "建设",
+            "ch": "纲要·10章3节",
+            "place": "北京",
+            "prov": "北京",
+            "threads": [
+              "path"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "batch": "wc",
+      "owner": "writer-e3",
+      "out": "data/sup/wc.json",
+      "items": [
+        {
+          "id": "sup-mz-1",
+          "part": "毛中特",
+          "ol": "大纲·毛中特1章",
+          "point": "马克思主义中国化时代化的提出、内涵、历史进程与理论成果",
+          "mode": "note",
+          "anchor": "1938_6th"
+        },
+        {
+          "id": "sup-mz-2",
+          "part": "毛中特",
+          "ol": "大纲·毛中特3章1节",
+          "point": "新民主主义革命理论形成的依据（近代中国国情、时代特征、实践基础）",
+          "mode": "note",
+          "anchor": "1840_opium_war"
+        },
+        {
+          "id": "sup-mz-3",
+          "part": "毛中特",
+          "ol": "大纲·毛中特4章2节",
+          "point": "社会主义改造道路和历史经验（农业、手工业、资本主义工商业改造）",
+          "mode": "note",
+          "anchor": "1955_coop"
+        },
+        {
+          "id": "sup-mz-4",
+          "part": "毛中特",
+          "ol": "大纲·毛中特4章3节",
+          "point": "社会主义基本制度在中国的确立及其意义",
+          "mode": "note",
+          "anchor": "1956_3rd"
+        },
+        {
+          "id": "sup-mz-5",
+          "part": "毛中特",
+          "ol": "大纲·毛中特5章2节",
+          "point": "初步探索的意义和经验教训",
+          "mode": "note",
+          "anchor": "1956_cpc8"
+        },
+        {
+          "id": "sup-mz-6",
+          "part": "毛中特",
+          "ol": "大纲·毛中特6章1节",
+          "point": "中国特色社会主义理论体系形成发展的社会历史条件",
+          "mode": "note",
+          "anchor": "1978_3rd"
+        },
+        {
+          "id": "sup-mz-7",
+          "part": "毛中特",
+          "ol": "大纲·毛中特8章3节",
+          "point": "“三个代表”重要思想的历史地位",
+          "mode": "note",
+          "anchor": "2000_three"
+        }
+      ]
+    },
+    {
+      "batch": "wd",
+      "owner": "writer-e4",
+      "out": "data/sup/wd.json",
+      "items": [
+        {
+          "id": "sup-xs-1",
+          "part": "习思想",
+          "ol": "大纲·习思想2章1节",
+          "point": "方向决定道路，道路决定命运（中国特色社会主义是历史和人民的选择、四个自信）",
+          "mode": "note",
+          "anchor": "2012_cpc18"
+        },
+        {
+          "id": "sup-xs-2",
+          "part": "习思想",
+          "ol": "大纲·习思想3章3节",
+          "point": "推进中国式现代化行稳致远（重大原则、重大关系）",
+          "mode": "note",
+          "anchor": "2022_cpc20"
+        },
+        {
+          "id": "sup-xs-3",
+          "part": "习思想",
+          "ol": "大纲·习思想4章1节",
+          "point": "中国共产党领导是中国特色社会主义最本质的特征",
+          "mode": "note",
+          "anchor": "2017_cpc19"
+        },
+        {
+          "id": "sup-xs-4",
+          "part": "习思想",
+          "ol": "大纲·习思想4章2节",
+          "point": "坚持党对一切工作的领导（最高政治领导力量、两个维护）",
+          "mode": "note",
+          "anchor": "2017_cpc19"
+        },
+        {
+          "id": "sup-xs-5",
+          "part": "习思想",
+          "ol": "大纲·习思想5章",
+          "point": "坚持以人民为中心（江山就是人民、人民至上、共同富裕）",
+          "mode": "note",
+          "anchor": "2021_100"
+        },
+        {
+          "id": "sup-xs-6",
+          "part": "习思想",
+          "ol": "大纲·习思想6章3节",
+          "point": "将改革开放进行到底（改革开放永无止境、高水平对外开放）",
+          "mode": "note",
+          "anchor": "2013_3rd"
+        },
+        {
+          "id": "sup-xs-7",
+          "part": "习思想",
+          "ol": "大纲·习思想7章2节",
+          "point": "坚持和完善社会主义基本经济制度（两个毫不动摇、分配制度、市场经济体制）",
+          "mode": "note",
+          "anchor": "2019_4th"
+        },
+        {
+          "id": "sup-xs-8",
+          "part": "习思想",
+          "ol": "大纲·习思想7章3节",
+          "point": "加快构建新发展格局（国内大循环为主体、国内国际双循环）",
+          "mode": "note",
+          "anchor": "2020_civil"
+        },
+        {
+          "id": "sup-xs-9",
+          "part": "习思想",
+          "ol": "大纲·习思想7章4节",
+          "point": "建设现代化经济体系（现代化产业体系、乡村振兴、区域协调）",
+          "mode": "note",
+          "anchor": "2017_cpc19"
+        },
+        {
+          "id": "sup-xs-10",
+          "part": "习思想",
+          "ol": "大纲·习思想8章",
+          "point": "教育、科技、人才战略（科教兴国、人才强国、创新驱动）",
+          "mode": "note",
+          "anchor": "2022_cpc20"
+        },
+        {
+          "id": "sup-xs-11",
+          "part": "习思想",
+          "ol": "大纲·习思想9章",
+          "point": "发展全过程人民民主（政治制度自信、全过程人民民主、制度体系、统一战线）",
+          "mode": "note",
+          "anchor": "2019_4th"
+        },
+        {
+          "id": "sup-xs-12",
+          "part": "习思想",
+          "ol": "大纲·习思想11章1节",
+          "point": "文化是民族生存和发展的重要力量（文化自信、文化发展道路）",
+          "mode": "note",
+          "anchor": "2013_3rd"
+        }
+      ]
+    },
+    {
+      "batch": "we",
+      "owner": "writer-e5",
+      "out": "data/sup/we.json",
+      "items": [
+        {
+          "id": "sup-xs-13",
+          "part": "习思想",
+          "ol": "大纲·习思想11章2节",
+          "point": "建设具有强大凝聚力和引领力的社会主义意识形态",
+          "mode": "note",
+          "anchor": "2013_3rd"
+        },
+        {
+          "id": "sup-xs-14",
+          "part": "习思想",
+          "ol": "大纲·习思想11章4节",
+          "point": "铸就社会主义文化新辉煌（传统文化、文化事业产业、软实力）",
+          "mode": "note",
+          "anchor": "2021_100"
+        },
+        {
+          "id": "sup-xs-15",
+          "part": "习思想",
+          "ol": "大纲·习思想12章1节",
+          "point": "让人民生活幸福是“国之大者”（民生是人民幸福之基）",
+          "mode": "note",
+          "anchor": "2015_poverty"
+        },
+        {
+          "id": "sup-xs-16",
+          "part": "习思想",
+          "ol": "大纲·习思想12章3节",
+          "point": "在共建共治共享中推进社会治理现代化",
+          "mode": "note",
+          "anchor": "2019_4th"
+        },
+        {
+          "id": "sup-xs-17",
+          "part": "习思想",
+          "ol": "大纲·习思想13章",
+          "point": "建设社会主义生态文明（人与自然和谐共生、美丽中国、全球生态）",
+          "mode": "note",
+          "anchor": "2018_const"
+        },
+        {
+          "id": "sup-xs-18",
+          "part": "习思想",
+          "ol": "大纲·习思想14章",
+          "point": "维护和塑造国家安全（总体国家安全观、新安全格局）",
+          "mode": "note",
+          "anchor": "2014_guoan"
+        },
+        {
+          "id": "sup-xs-19",
+          "part": "习思想",
+          "ol": "大纲·习思想16章",
+          "point": "坚持“一国两制”和推进祖国完全统一",
+          "mode": "note",
+          "anchor": "2020_gangqu"
+        },
+        {
+          "id": "sup-xs-20",
+          "part": "习思想",
+          "ol": "大纲·习思想15章",
+          "point": "建设巩固国防和强大人民军队（强军目标、国防军队现代化）",
+          "mode": "note",
+          "anchor": "2013_qiangjun"
+        },
+        {
+          "id": "sup-xs-21",
+          "part": "习思想",
+          "ol": "大纲·习思想17章1节",
+          "point": "新时代中国外交在大变局中开创新局",
+          "mode": "note",
+          "anchor": "2013_belt"
+        },
+        {
+          "id": "sup-xs-22",
+          "part": "习思想",
+          "ol": "大纲·习思想17章2节",
+          "point": "全面推进中国特色大国外交（和平发展、新型国际关系）",
+          "mode": "note",
+          "anchor": "2013_belt"
+        },
+        {
+          "id": "sup-xs-23",
+          "part": "习思想",
+          "ol": "大纲·习思想18章3节",
+          "point": "坚定不移推进反腐败斗争",
+          "mode": "note",
+          "anchor": "2012_cpc18"
+        },
+        {
+          "id": "sup-xs-24",
+          "part": "习思想",
+          "ol": "大纲·习思想18章4节",
+          "point": "建设长期执政的马克思主义政党（自我革命、历史周期率第二个答案）",
+          "mode": "note",
+          "anchor": "2021_resolution"
+        }
+      ]
+    }
+  ]
+}

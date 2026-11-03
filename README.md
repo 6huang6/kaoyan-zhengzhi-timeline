@@ -1,10 +1,12 @@
-# 中国近现代史 · 时间线大观
+﻿# 中国近现代史 · 时间线大观
 
 考研政治「中国近现代史纲要 + 毛泽东思想和中国特色社会主义理论体系概论」复习工具。
 139 个考点 + 13 个补全节点 = 152 个考点、6 个时期、8 条专题线索、7 个理论专题、18 张易混辨析表、39 张大纲补遗卡、一份考纲对齐清单，全部收在一个本地网页里。
 每个考点都标了**双轨出处**：教材章节（`史纲 5章2节`）+ 2027 考试大纲条目（`大纲 史纲 6章3节`）。
 
 **打开方式**：双击 `index.html`（无需联网、无需安装、无需启动服务器）。
+
+**在线版（发给朋友用这个）**：<https://6huang6.github.io/kaoyan-zhengzhi-timeline/> —— 手机/平板/电脑浏览器直接打开，无需下载。
 
 ---
 
@@ -102,6 +104,8 @@ tools/check_sup.js      补遗批次校验器（node tools/check_sup.js data/sup
 tools/parse_outline.py  解析 2027 大纲 PDF 文本 → docs/outline2027.json
 tools/apply_align.py    合并 docs/align-*.json → master 的 ol 字段 + docs/GAPS.md
 vendor/china-geo.js     省级地图几何（运行时投影）
+tools/make_dist.ps1     生成发布目录 dist/（只含运行必需文件）
+dist/                   发布用副本（= GitHub Pages 仓库根目录，含 .git）
 src/ref/                三本教材纯文本 + 2027 大纲文本（核对用）
 docs/SPEC.md            数据字段规范与写作铁律
 docs/SUPPLEMENTS.md     补遗写作契约（字数/出处/字段）
@@ -148,3 +152,4 @@ node tools/build.js
 - 顶上导航在窄屏变两行；时间线、地图支持**单指拖动 + 双指缩放**（`touch-action:none`，不会带动页面滚动）。
 - 宽屏（>1024）详情面板在右侧；平板（≤1024）改为**底部抽屉**，点空白或右上角 × 收起。
 - 触屏下按钮点按区已放大（≥40px），时间线标签仍分层排布，放大或悬停可看全名。
+
