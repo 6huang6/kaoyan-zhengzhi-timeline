@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>史纲·毛中特 时间线大观</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="topbar">
+  <button class="brand" id="brand" title="回到总览">
+    <span class="seal">史</span>
+    <span class="brand-txt"><b>时间线大观</b><i>史纲 · 毛中特 · 考研政治</i></span>
+  </button>
+
+  <nav class="views" id="viewsNav">
+    <button data-view="timeline" class="on"><span>时间线</span></button>
+    <button data-view="map"><span>地图</span></button>
+    <button data-view="threads"><span>脉络</span></button>
+    <button data-view="contrast"><span>辨析</span></button>
+    <button data-view="outline"><span>考纲</span></button>
+  </nav>
+
+  <button class="searchbtn" id="searchBtn">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5.2"/><path d="M11 11l3.2 3.2"/></svg>
+    <span>搜考点、会议、口诀</span><kbd>Ctrl K</kbd>
+  </button>
+
+  <div class="stat" id="stat" title="已掌握 / 全部考点">
+    <div class="stat-bar"><i id="statFill"></i></div>
+    <span id="statTxt">0 / 139</span>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ================= 时间线 ================= -->
+  <section class="view on" id="view-timeline">
+    <div class="tl-toolbar">
+      <div class="chips" id="eraChips"></div>
+      <div class="filters" id="filters">
+        <button data-filter="all" class="on">全部</button>
+        <button data-filter="hot">只看高频 ★4+</button>
+        <button data-filter="todo">只看未掌握</button>
+        <span class="sep"></span>
+        <label class="tgl" title="理论线始终显示"><input type="checkbox" id="tglTheory" checked><span>理论线</span></label>
+        <label class="tgl" title="新时代节点"><input type="checkbox" id="tglNew" checked><span>新时代</span></label>
+      </div>
+      <div class="zoom">
+        <button id="zoomOut" title="缩小 -">−</button>
+        <span id="zoomTxt">100%</span>
+        <button id="zoomIn" title="放大 +">+</button>
+        <button id="zoomFit" class="ghost" title="整轴总览">总览</button>
+      </div>
+    </div>
+    <div class="tl-stage" id="tlStage">
+      <div class="tl-world" id="tlWorld">
+        <svg class="tl-axis" id="tlAxis" xmlns="http://www.w3.org/2000/svg"></svg>
+        <div class="tl-labels" id="tlLabels"></div>
+        <div class="tl-nodes" id="tlNodes"></div>
+      </div>
+      <div class="tl-empty" id="tlEmpty">没有符合筛选条件的考点</div>
+      <div class="tl-hint"><kbd>拖动</kbd> 平移 <kbd>滚轮</kbd> 缩放 <kbd>←</kbd><kbd>→</kbd> 切换考点 <kbd>Ctrl K</kbd> 搜索</div>
+    </div>
+    <div class="minimap" id="minimap">
+      <div class="mm-track" id="mmTrack"></div>
+      <div class="mm-win" id="mmWin"></div>
+    </div>
+  </section>
+
+  <!-- ================= 地图 ================= -->
+  <section class="view" id="view-map">
+    <div class="map-side">
+      <div class="map-side-head">
+        <h2>历史地理</h2>
+        <p>考点与地点的对应：哪些地方是必背的地理锚点</p>
+      </div>
+      <div class="map-legend">
+        <span><i class="dot s"></i>史实</span><span><i class="dot m"></i>理论</span><span><i class="dot x"></i>新时代</span>
+      </div>
+      <div class="map-list" id="mapList"></div>
+    </div>
+    <div class="map-canvas" id="mapCanvas">
+      <svg id="chinaSvg" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div class="map-tip" id="mapTip"></div>
+      <div class="map-mode">
+        <button data-mm="star" class="on">全部</button>
+        <button data-mm="sel">仅当前线索</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 脉络 ================= -->
+  <section class="view" id="view-threads">
+    <div class="th-head">
+      <div class="th-tabs">
+        <button data-tt="thread" class="on">专题线索</button>
+        <button data-tt="theory">理论专题</button>
+        <button data-tt="sup">大纲补遗</button>
+      </div>
+      <p class="th-sub" id="thSub"></p>
+    </div>
+    <div class="th-body" id="thBody"></div>
+  </section>
+
+  <!-- ================= 辨析 ================= -->
+  <section class="view" id="view-contrast">
+    <div class="ct-head">
+      <h2>易混辨析</h2>
+      <p id="ctSub">考场上最容易混淆的概念对照。点任一行可跳到对应考点。</p>
+      <div class="ct-filters" id="ctFilters"></div>
+    </div>
+    <div class="ct-grid" id="ctGrid"></div>
+  </section>
+
+  <!-- ================= 考纲 ================= -->
+  <section class="view" id="view-outline">
+    <div class="ol-head">
+      <h2>考纲对齐</h2>
+      <p id="olSub"></p>
+      <div class="ol-stats" id="olStats"></div>
+    </div>
+    <div class="ol-body" id="olBody"></div>
+  </section>
+</main>
+
+<!-- ================= 详情面板 ================= -->
+<aside class="detail" id="detail" aria-hidden="true">
+  <div class="detail-top">
+    <div class="d-year"><b id="dYear">1840</b><i id="dMonth"></i></div>
+    <div class="d-badges" id="dBadges"></div>
+    <div class="d-acts">
+      <button id="dQuick" title="速查模式（只留结论与易混）">速查</button>
+      <button id="dPrev" title="上一条 ←">←</button>
+      <button id="dNext" title="下一条 →">→</button>
+      <button id="dClose" title="关闭 Esc">✕</button>
+    </div>
+  </div>
+  <h2 class="d-title" id="dTitle"></h2>
+  <div class="d-meta" id="dMeta"></div>
+  <div class="d-scroll" id="dScroll">
+    <div class="d-body" id="dBody"></div>
+    <div class="d-rel" id="dRel"></div>
+  </div>
+  <div class="d-foot" id="dFoot">
+    <span class="d-foot-lbl">掌握程度</span>
+    <button data-mastery="0" class="mt0">未学</button>
+    <button data-mastery="1" class="mt1">学习中</button>
+    <button data-mastery="2" class="mt2">已掌握</button>
+    <span class="d-note" id="dNote"></span>
+  </div>
+</aside>
+
+<!-- ================= 首页 ================= -->
+<div class="home" id="home">
+  <div class="home-inner">
+    <div class="home-head">
+      <span class="seal big">史</span>
+      <h1>中国近现代史 · 时间线大观</h1>
+      <p class="home-sub">以史纲为骨、毛中特理论挂靠其上的考点全景 · 从 1839 到 2024，一条轴读懂中国道路</p>
+      <div class="home-nums" id="homeNums"></div>
+    </div>
+    <div class="home-eras" id="homeEras"></div>
+    <div class="home-quick" id="homeQuick">
+      <button data-link="random">随机抽一个考点</button>
+      <span>·</span>
+      <button data-link="todo">只看没掌握的 <em id="homeQuickSub"></em></button>
+      <span>·</span>
+      <button data-link="contrast">易混辨析</button>
+      <span>·</span>
+      <button data-link="outline">考纲缺口清单</button>
+    </div>
+    <div class="home-foot">
+      <p id="homeSources"></p>
+      <p class="dim">考频 ★ 为近十几年真题考查频度的经验估计，非官方数据。全部内容以 2023 版马工程重点教材为准。</p>
+    </div>
+  </div>
+  <button class="home-go" id="homeGo">直接进入时间线 →</button>
+</div>
+
+<!-- ================= 搜索面板 ================= -->
+<div class="palette" id="palette">
+  <div class="pal-inner">
+    <div class="pal-input">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5.2"/><path d="M11 11l3.2 3.2"/></svg>
+      <input id="palInput" placeholder="输入考点、会议、人物、年份、口诀（如：三大法宝 / 遵义 / 1927 / 两个务必）" autocomplete="off" spellcheck="false">
+      <kbd>Esc</kbd>
+    </div>
+    <div class="pal-hint" id="palHint">输入关键词开始检索 · ↑↓ 选择 · Enter 打开</div>
+    <div class="pal-list" id="palList"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="vendor/china-geo.js"></script>
+<script src="data/master.js"></script>
+<script src="data/parts/e1.js"></script>
+<script src="data/parts/e2.js"></script>
+<script src="data/parts/e3.js"></script>
+<script src="data/parts/e4.js"></script>
+<script src="data/parts/e5.js"></script>
+<script src="data/parts/e6.js"></script>
+<script src="data/parts/e7.js"></script>
+<script src="data/threads.js"></script>
+<script src="data/contrasts.js"></script>
+<script src="data/theory.js"></script>
+<script src="data/gaps.js"></script>
+<script src="data/supplements.js"></script>
+<script src="js/core.js"></script>
+<script src="js/geo.js"></script>
+<script src="js/timeline.js"></script>
+<script src="js/mapview.js"></script>
+<script src="js/threads.js"></script>
+<script src="js/contrast.js"></script>
+<script src="js/outline.js"></script>
+<script src="js/detail.js"></script>
+<script src="js/search.js"></script>
+<script src="js/home.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
+
+
