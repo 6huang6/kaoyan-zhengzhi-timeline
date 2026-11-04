@@ -80,6 +80,7 @@
 
 ```
 index.html              页面骨架（双击即用）
+favicon.ico / icon-192 / icon-512 / apple-touch-icon / manifest.webmanifest   标签页图标与「添加到主屏幕」配置
 css/app.css             全部样式
 js/core.js              数据装配、状态、事件总线
 js/timeline.js          非等距时间轴布局与交互
@@ -164,3 +165,5 @@ node tools/build.js
   - 辨析表格横向可滑（表格有最小宽度，避免压成一行两字）。
 - 触屏手势：拖动平移、双指缩放、单击看考点；首次进入会弹一次操作提示。
 - 手机竖屏建议直接横过来看时间线，可视范围更宽。
+
+
