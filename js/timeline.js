@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    timeline.js — 非等距分段时间轴：布局 / 轴 / 标签避让 / 拖拽缩放 / 缩略轴
    ============================================================ */
 (function (W) {
@@ -36,26 +36,49 @@
     }
     var x = PAD_L;
     lay.bands = [];
+    lay.first = {};                            // era -> 分界事件节点
+    lay.byId = {};
+
     for (i = 1; i <= 6; i++) {
       var w = lay.u * (counts[i] || 1);
       lay.bands.push({ era: i, x0: x, w: w, x1: x + w, n: counts[i] || 0 });
       x += w;
     }
     lay.total = x;
-    lay.byId = {};
 
-    var minGap = Math.min(lay.u * 0.55, 24);
+    // 分界事件（按 id 全局查找）：era i 的左界 = ERAS[i-1].bd 的时间
+    var bdT = {}, bdNode = {};
+    for (var ei = 2; ei <= 6; ei++) {
+      var ce = C.ERAS[ei - 1];
+      if (!ce || !ce.bd) continue;
+      for (var gi = 0; gi < C.NODES.length; gi++) {
+        if (C.NODES[gi].id === ce.bd) { bdT[ei] = C.NODES[gi].t; bdNode[ei] = C.NODES[gi]; break; }
+      }
+    }
+    lay.boundT = bdT;
+
+    for (var bi = 0; bi < lay.bands.length; bi++) {
+      var bd = lay.bands[bi];
+      var lb = C.NODES.filter(function (n) { return n.era === bd.era; });
+      if (!lb.length) { bd.y0 = 0; bd.y1 = 1; continue; }
+      bd.y0 = (bdT[bd.era] !== undefined) ? bdT[bd.era] : lb[0].t;
+      bd.y1 = (bdT[bd.era + 1] !== undefined) ? bdT[bd.era + 1] : (lb[lb.length - 1].t + 0.8);
+      if (bd.y1 <= bd.y0) bd.y1 = bd.y0 + 1;
+      bd.anchor = bdNode[bd.era] || lb[0];
+      lay.first[bd.era] = bd.anchor;
+    }
+
+    var minGap = Math.min(lay.u * 0.32, 13);
     for (var b = 0; b < lay.bands.length; b++) {
       var band = lay.bands[b];
-      var era = C.ERAS[band.era - 1];
       var list = C.NODES.filter(function (n) { return n.era === band.era; });
       var prev = -1e9;
       for (i = 0; i < list.length; i++) {
         var n = list[i];
-        var f = C.clamp((n.t - era.y0) / (era.y1 - era.y0), 0, 1);
-        var nx = band.x0 + 6 + f * (band.w - 12);
+        var f = C.clamp((n.t - band.y0) / (band.y1 - band.y0), 0, 1);
+        var nx = band.x0 + f * (band.w - 6);
         if (nx - prev < minGap) nx = prev + minGap;
-        if (nx > band.x1 - 4) nx = band.x1 - 4;
+        if (nx > band.x1 - 3) nx = band.x1 - 3;
         prev = nx;
         n.x = nx;
         lay.byId[n.id] = n;
@@ -70,7 +93,18 @@
     for (var i = 0; i < lay.bands.length; i++) {
       var b = lay.bands[i], era = C.ERAS[i];
       out.push('<rect class="era-band' + (i % 2 ? ' alt' : '') + '" x="' + b.x0 + '" y="0" width="' + b.w + '" height="' + H + '"/>');
-      if (i > 0) out.push('<line class="era-line" x1="' + b.x0 + '" y1="0" x2="' + b.x0 + '" y2="' + H + '"/>');
+      if (i > 0) {
+        out.push('<line class="era-line" x1="' + b.x0 + '" y1="0" x2="' + b.x0 + '" y2="' + H + '"/>');
+        // 分界线上的小菱形：正是分界事件所在位置
+        out.push('<path class="era-bd-mark" d="M' + b.x0 + ' ' + (sp - 10) + 'l5 5l-5 5l-5 -5z"/>');
+        // 分界说明：默认右对齐贴在分界线左侧；靠近视口左缘时改画在本期内部
+        if (!lay.compact && b.w > 74) {
+          var bx = b.x0 - 9, ba = 'end';
+          if (b.x0 - S.pan < 130) { bx = b.x0 + (b.w >= 56 ? 52 : 8); ba = 'start'; }
+          out.push('<text class="era-bd" x="' + bx + '" y="48" text-anchor="' + ba + '">' +
+            Math.floor(b.y0) + ' ' + (era.bdName || '') + '</text>');
+        }
+      }
       if (b.w >= 56) {
         out.push('<text class="era-num"' + (lay.compact ? ' font-size="26"' : '') +
           ' x="' + (b.x0 + 14) + '" y="' + (lay.compact ? 28 : 44) + '">' + (i + 1) + '</text>');
@@ -78,17 +112,18 @@
       if (!lay.compact && b.w > 150 && S.zoom >= 0.2) {
         out.push('<text class="era-txt"' + (b.w < 240 ? ' font-size="11.5"' : '') +
           ' x="' + (b.x0 + 15) + '" y="70">' + era.name + '</text>');
-        if (!lay.compact && b.w > 260) out.push('<text class="era-txt-en" x="' + (b.x0 + 15) + '" y="86">' + era.span + '</text>');
+        if (!lay.compact && b.w > 260) out.push('<text class="era-txt-en" x="' + (b.x0 + 15) + '" y="86">' +
+          (era.span || '') + '</text>');
       }
     }
 
     for (var j = 0; j < lay.bands.length; j++) {
-      var bb = lay.bands[j], er = C.ERAS[j];
-      var ppy = bb.w / (er.y1 - er.y0);
+      var bb = lay.bands[j];
+      var ppy = bb.w / (bb.y1 - bb.y0);
       var steps = [1, 2, 5, 10, 20, 50], step = 50;
       for (var s = 0; s < steps.length; s++) { if (steps[s] * ppy >= 56) { step = steps[s]; break; } }
-      for (var yy = Math.ceil(er.y0 / step) * step; yy <= er.y1; yy += step) {
-        var tx = bb.x0 + (yy - er.y0) * ppy;
+      for (var yy = Math.ceil(bb.y0 / step) * step; yy <= bb.y1; yy += step) {
+        var tx = bb.x0 + (yy - bb.y0) * ppy;
         if (tx < bb.x0 + 3 || tx > bb.x1 - 3) continue;
         out.push('<line class="tick' + (yy % 100 === 0 ? ' tick-major' : '') + '" x1="' + tx.toFixed(1) +
           '" y1="' + (sp - 5) + '" x2="' + tx.toFixed(1) + '" y2="' + (sp + 5) + '"/>');
@@ -243,7 +278,7 @@
     computeLayout();
     renderAxis(); renderNodes();
     band = lay.bands[e - 1];
-    S.pan = band.x0 - 40;
+    S.pan = Math.max(0, band.x0 - 128);
     paint();
     el.zoomTxt.textContent = Math.round(S.zoom * 100) + '%';
     renderMinimap();

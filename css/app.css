@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    史纲·毛中特 时间线大观  —  宣纸红金主题
    ============================================================ */
 :root{
@@ -184,6 +184,8 @@ main{position:relative;z-index:1;flex:1 1 auto;min-height:0;height:auto;overflow
 .tl-axis .era-txt{fill:rgba(33,29,24,.42);font-family:var(--serif);font-size:15px;letter-spacing:.14em}
 .tl-axis .era-txt-en{fill:rgba(33,29,24,.20);font-family:var(--sans);font-size:9.5px;letter-spacing:.22em}
 .tl-axis .era-num{fill:var(--red);opacity:.42;font-family:var(--serif);font-size:34px;font-weight:600}
+.tl-axis .era-bd-mark{fill:var(--red);stroke:var(--paper-2);stroke-width:1.4;opacity:.72}
+.tl-axis .era-bd{fill:rgba(168,50,45,.62);font-family:var(--sans);font-size:10px;letter-spacing:.06em;font-variant-numeric:tabular-nums}
 .tl-axis .theory-link{stroke:rgba(44,93,124,.30);stroke-width:1;stroke-dasharray:3 3;fill:none}
 
 .tl-nodes,.tl-labels{position:absolute;top:0;left:0;height:100%}
