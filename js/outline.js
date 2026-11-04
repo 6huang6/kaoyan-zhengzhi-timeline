@@ -65,6 +65,8 @@
     var seenId = {};
     (G.nodes || []).forEach(function (x) { if (x && x.id) seenId[x.id] = 1; });
     ((W.SUP && W.SUP.nodes) || []).forEach(function (x) { if (x && x.id) seenId[x.id] = 1; });
+    // 后来新增的会议节点不在 align 文件里，但它们自己带 ol，也应计入「已标大纲归属」
+    C.NODES.forEach(function (n) { if (n && n.id && n.ol) seenId[n.id] = 1; });
     var aligned = Object.keys(seenId).length;
     var gaps = G.gaps || [], extra = G.extra || [];
 

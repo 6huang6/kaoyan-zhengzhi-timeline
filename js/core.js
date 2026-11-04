@@ -34,9 +34,10 @@
     farm:  { name: '土地与农民', color: '#4f7a4a', desc: '土地政策随革命阶段的变化' },
     party: { name: '党的建设', color: '#2c5d7c', desc: '从建党到自我革命' },
     army:  { name: '军队与武装斗争', color: '#5b6b7a', desc: '人民军队的创建、发展与战略转变' },
-    dip:   { name: '对外关系', color: '#9a7b4f', desc: '从条约外交到独立自主的和平外交' }
+    dip:   { name: '对外关系', color: '#9a7b4f', desc: '从条约外交到独立自主的和平外交' },
+    mtg:   { name: '关键会议', color: '#7b4b6a', desc: '定路线、定制度、定理论的会议链条' }
   };
-  var THREAD_ORDER = ['inv', 'path', 'mks', 'unt', 'farm', 'party', 'army', 'dip'];
+  var THREAD_ORDER = ['inv', 'path', 'mks', 'unt', 'farm', 'party', 'army', 'dip', 'mtg'];
   var THREAD_ALIAS = {
     th_invade: 'inv', th_inv: 'inv', invade: 'inv',
     th_path: 'path', path: 'path', th_road: 'path',
@@ -45,7 +46,8 @@
     th_land: 'farm', farm: 'farm', th_farm: 'farm',
     th_party: 'party', party: 'party',
     th_army: 'army', army: 'army', th_war: 'army',
-    th_dip: 'dip', dip: 'dip', th_foreign: 'dip'
+    th_dip: 'dip', dip: 'dip', th_foreign: 'dip',
+    th_meeting: 'mtg', mtg: 'mtg', meeting: 'mtg'
   };
   var THREAD_NAME2ID = {};
   for (var _t in THREADS) THREAD_NAME2ID[THREADS[_t].name] = _t;

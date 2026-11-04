@@ -1,5 +1,5 @@
-/* ============================================================
-   threads.js — 脉络视图：八条跨期专题线索 + 毛中特理论专题树
+﻿/* ============================================================
+   threads.js — 脉络视图：九条跨期专题线索 + 毛中特理论专题树
    ============================================================ */
 (function (W) {
   'use strict';
@@ -34,7 +34,9 @@
       used = true;
       html += '<div class="thread-card" data-thread="' + tid + '">' +
         '<h4><i class="dot" style="background:' + meta.color + '"></i>' + meta.name +
-        '<span class="k">' + nodes.length + ' 个考点</span></h4>' +
+        '<span class="k">' + nodes.length + ' 个考点' +
+        (d && d.nodes && d.nodes.length && d.nodes.length < nodes.length ? ' · 精选 ' + d.nodes.length : '') +
+        '</span></h4>' +
         '<p class="desc">' + C.esc(d && d.summary ? d.summary : meta.desc) + '</p>';
       if (d && d.stages && d.stages.length) {
         html += '<div class="thread-steps">';
@@ -52,7 +54,7 @@
     html += '</div>';
     if (!used) html = '<div class="pal-empty">线索数据生成中…</div>';
     el.body.innerHTML = html;
-    el.sub.textContent = '把散落的考点穿成线：八条线索横跨 1840—2024，每条都给出阶段演变与关键节点；点节点直接看详情。';
+    el.sub.textContent = '把散落的考点穿成线：九条线索横跨 1840—2025，每条都给出阶段演变与关键节点；点节点直接看详情。';
   }
 
   function renderTheory() {
@@ -166,3 +168,4 @@
 
   W.ThreadsView = { init: init, render: render };
 })(window);
+
