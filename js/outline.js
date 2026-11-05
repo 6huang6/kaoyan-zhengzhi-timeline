@@ -34,6 +34,38 @@
     return String(ol || '').replace(/^大纲·/, '').replace('章', ' 章 ').replace('节', ' 节').replace(/\s+/g, ' ');
   }
 
+  /* 把内部字段名与节点 id 翻成人话：1840_opium_war → 「鸦片战争爆发」，sig → 历史意义 */
+  var FIELD = { bg: '背景', main: '主要内容', sig: '历史意义', tip: '考点提示', mix: '易混辨析', kw: '关键词', ch: '教材章节', ol: '大纲条目', star: '考频' };
+  var WORDS = { master: '本库', extra: '超纲', gap: '缺口' };
+  function pretty(s) {
+    if (!s) return '';
+    // 节点 id → 「年份 名称」
+    s = String(s).replace(/\b(\d{4})_([a-z0-9_]+)\b/g, function (all) {
+      var n = C.BYID[all];
+      return n ? '「' + n.label + '」' : all;
+    });
+    // 理论专题 id（t_xxx）/ 专题线索 id（th_xxx、短 id）
+    s = s.replace(/\bt_[a-z0-9_]+\b/g, function (all) {
+      var list = W.THEORY || [];
+      for (var i = 0; i < list.length; i++) if (list[i].id === all) return '「' + list[i].name + '」';
+      return all;
+    });
+    s = s.replace(/\bth_[a-z0-9_]+\b/g, function (all) {
+      var key = C.THREAD_ALIAS[all] || all.replace(/^th_/, '');
+      var t = C.THREADS[key];
+      return t ? '「' + t.name + '」' : all;
+    });
+    s = s.replace(/\bch\s*=/g, '教材章节：').replace(/\bol\s*=/g, '大纲条目：');
+    s = s.replace(/(纲要|概论|习思想)·\d+章(?:\d+节)?/g, function (all) { return C.chLabel(all); });
+    s = s.replace(/(^|[^A-Za-z0-9_])\s*(bg|main|sig|tip|mix)\s*(?![A-Za-z0-9_])/g, function (all, pre, w) {
+      return pre + (FIELD[w] || w);
+    });
+    s = s.replace(/(^|[^A-Za-z0-9_])\s*(master|extra|gap)\s*(?![A-Za-z0-9_])/g, function (all, pre, w) {
+      return pre + (WORDS[w] || w);
+    });
+    return s.replace(/[ \t]{2,}/g, ' ');
+  }
+
   function rows(arr, kind) {
     if (!arr.length) return '<div class="pal-empty">这一类暂时没有条目。</div>';
     var idx = supIndex();
@@ -41,14 +73,15 @@
       var head = '<div class="ol-row-main">' +
         '<span class="ol-chip">' + C.esc(olText(g.ol)) + '</span>' +
         '<b>' + C.esc(g.point || '') + '</b></div>';
-      var why = g.why ? '<p class="ol-why">' + C.esc(g.why) + '</p>' : '';
-      var sug = g.suggest ? '<p class="ol-sug">建议：' + C.esc(g.suggest) + '</p>' : '';
-      var ev = g.evidence ? '<p class="ol-ev" title="' + C.esc(g.evidence) + '">' + C.esc(g.evidence) + '</p>' : '';
+      var why = g.why ? '<p class="ol-why">' + C.esc(pretty(g.why)) + '</p>' : '';
+      var sug = g.suggest ? '<p class="ol-sug">建议：' + C.esc(pretty(g.suggest)) + '</p>' : '';
+      var ev = g.evidence ? '<p class="ol-ev" title="' + C.esc(C.prettyEv(g.evidence)) + '">' + C.esc(C.prettyEv(g.evidence)) + '</p>' : '';
       var meta = '';
       if (kind === 'extra') {
-        meta = '<div class="ol-row-main"><span class="ol-chip">' + C.esc(g.id || '') + '</span><b>' +
-          C.esc(g.label || '') + '</b></div>';
-        return '<div class="ol-row">' + meta + (g.reason ? '<p class="ol-why">' + C.esc(g.reason) + '</p>' : '') + '</div>';
+        var nd = C.BYID[g.id];
+        var title = nd ? (nd.y + ' ' + nd.label) : '';
+        return '<div class="ol-row"><div class="ol-row-main"><b>' + C.esc(title) + '</b></div>' +
+          (g.reason ? '<p class="ol-why">' + C.esc(pretty(g.reason)) + '</p>' : '') + '</div>';
       }
       var hit = idx(g);
       var fill = hit
@@ -71,7 +104,7 @@
     var gaps = G.gaps || [], extra = G.extra || [];
 
     if (el.sub) {
-      el.sub.textContent = '按 2027 考研政治大纲（用户提供的 PDF）逐条对齐。' +
+      el.sub.textContent = '按 2027 考研政治大纲逐条对齐。' +
         '「缺口」= 大纲要求、本库尚无专条；「超纲」= 本库有、大纲找不到对应（多为教材背景或时政）。';
     }
     if (el.stats) {

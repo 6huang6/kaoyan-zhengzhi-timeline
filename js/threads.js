@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    threads.js — 脉络视图：九条跨期专题线索 + 毛中特理论专题树
    ============================================================ */
 (function (W) {
@@ -123,7 +123,7 @@
           html += '<div class="sup-anchor">挂在：<button class="th-chip" data-go="' + n.anchor + '">' +
             C.BYID[n.anchor].y + ' ' + C.esc(C.BYID[n.anchor].label) + '</button></div>';
         }
-        html += '<div class="sup-ev">' + C.esc(n.ev || '') + '</div>';
+        html += '<div class="sup-ev">' + C.esc(C.prettyEv(n.ev || '')) + '</div>';
         html += '</div>';
       }
     }

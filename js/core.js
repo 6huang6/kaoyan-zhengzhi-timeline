@@ -156,6 +156,14 @@
     if (!m) return ol ? '大纲 ' + s : '';
     return '大纲 ' + m[1] + ' ' + m[2] + ' 章' + (m[3] ? ' ' + m[3] + ' 节' : '');
   }
+  // 出处「gangyao.txt:341 原文…」→「《纲要》第 341 行 · 原文…」
+  var BOOK = { gangyao: '《纲要》', gaigai: '《概论》', xisixiang: '《习思想》' };
+  function prettyEv(s) {
+    if (!s) return '';
+    return String(s).replace(/\b(gangyao|gaigai|xisixiang)\.txt:(\d+)/g, function (all, f, ln) {
+      return (BOOK[f] || f) + '第 ' + ln + ' 行 ';
+    }).replace(/\s+/g, ' ').replace(/^ /, '').replace(/ $/, '');
+  }
 
   /* ---------------- 装配 ---------------- */
   var NODES = [], BYID = {}, PARTS = {};
@@ -285,7 +293,7 @@
     qs: qs, qsa: qsa, ce: ce, esc: esc, para: para, hl: hl,
     clamp: clamp, raf: raf, toast: toast,
     toFrac: toFrac, fmtDate: fmtDate, fmtShort: fmtShort, stars: stars,
-    chLabel: chLabel, olLabel: olLabel,
+    chLabel: chLabel, olLabel: olLabel, prettyEv: prettyEv,
     assemble: assemble, select: select, step: step,
     visibleNodes: visibleNodes,
     getM: getM, setM: setM, mStats: mStats, seen: seen,
