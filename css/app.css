@@ -1065,13 +1065,13 @@ body.has-detail .tl-stage{clip-path:inset(0 0 0 0)}
   .d-foot{padding:10px 16px 14px}
   .d-foot .d-note{display:none}
 
-  /* 地图：竖排，图在上、地名列表在下（限高滚动） */
-  #view-map{flex-direction:column-reverse}
-  .map-side{width:auto;max-height:34vh;border-left:0;border-top:1px solid var(--line);overflow-y:auto}
+  /* 地图：整页滚动，图在上、地名列表在下（图随内容一起滚走） */
+  #view-map.on{display:flex;flex-direction:column;overflow-y:auto;overscroll-behavior:contain}
+  .map-canvas{order:1;flex:0 0 48%;min-height:0}
+  .map-side{order:2;width:auto;max-height:none;border-left:0;border-top:1px solid var(--line);overflow:visible}
   .map-side-head{padding:12px 14px 8px}
   .map-side-head h2{font-size:16px}
   .map-side-head p{font-size:10.5px}
-  .map-canvas{flex:1 1 auto;min-height:0}
   .map-mode{top:10px;right:10px}
   .map-tip{font-size:11px;padding:6px 9px}
 
@@ -1079,6 +1079,10 @@ body.has-detail .tl-stage{clip-path:inset(0 0 0 0)}
   .th-head,.ct-head,.ol-head{padding:14px 14px 0}
   .th-head h2,.ct-head h2,.ol-head h2{font-size:20px}
   .th-body,.ct-body,.ol-body{padding:10px 12px 28px}
+  /* 考纲：整页滚动，标题/筛选栏随内容一起滚走 */
+  #view-outline.on{display:block;overflow-y:auto;overscroll-behavior:contain}
+  .ol-main{display:block}
+  .ol-body{overflow:visible}
   .threads-wrap,.sup-wrap{grid-template-columns:1fr;gap:10px}
   .thread-card,.sup-card{padding:13px 14px}
   .ct-grid{grid-template-columns:1fr;gap:10px}
