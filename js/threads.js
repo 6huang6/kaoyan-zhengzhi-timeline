@@ -92,50 +92,9 @@
     el.sub.textContent = '毛中特不是时间轴：七个理论专题各有自己的问题链。先看「回答什么问题」，再看要点与地位。';
   }
 
-  function renderSup() {
-    var data = (W.SUP && W.SUP.notes) || [];
-    if (!data.length) {
-      el.body.innerHTML = '<div class="pal-empty">补遗数据生成中…</div>';
-      el.sub.textContent = '考纲里有、时间线上没有的知识点，用卡片补齐。';
-      return;
-    }
-    var PARTS = [['史纲', '史纲'], ['毛中特', '毛中特'], ['习思想', '习思想']];
-    var html = '<div class="sup-wrap">';
-    for (var p = 0; p < PARTS.length; p++) {
-      var list = data.filter(function (x) { return x.part === PARTS[p][0]; });
-      if (!list.length) continue;
-      html += '<h4 class="sup-group">' + PARTS[p][1] + '<span class="k">' + list.length + ' 条</span></h4>';
-      for (var i = 0; i < list.length; i++) {
-        var n = list[i], sec = n.sec || {};
-        html += '<div class="sup-card" data-note="' + C.esc(n.id) + '">' +
-          '<div class="sup-head"><b>' + C.esc(n.point) + '</b>' +
-          '<span class="sup-ol">' + C.esc(C.olLabel ? C.olLabel(n.ol) : n.ol) + '</span>' +
-          '<span class="sup-star">' + C.stars(n.star) + '</span></div>' +
-          '<div class="sup-main">' + C.para(sec.main || '') + '</div>';
-        if (sec.tip) html += '<div class="sup-tip"><span class="tag-lbl">考法</span>' + C.para(sec.tip) + '</div>';
-        if (sec.mix) html += '<div class="sup-mix"><span class="tag-lbl">易混</span>' + C.para(sec.mix) + '</div>';
-        if (n.kw && n.kw.length) {
-          html += '<div class="sup-kw">' + n.kw.map(function (k) {
-            return '<button class="kw" data-kw="' + C.esc(k) + '">' + C.esc(k) + '</button>';
-          }).join('') + '</div>';
-        }
-        if (n.anchor && C.BYID[n.anchor]) {
-          html += '<div class="sup-anchor">挂在：<button class="th-chip" data-go="' + n.anchor + '">' +
-            C.BYID[n.anchor].y + ' ' + C.esc(C.BYID[n.anchor].label) + '</button></div>';
-        }
-        html += '<div class="sup-ev">' + C.esc(C.prettyEv(n.ev || '')) + '</div>';
-        html += '</div>';
-      }
-    }
-    html += '</div>';
-    el.body.innerHTML = html;
-    el.sub.textContent = '考纲里有、时间线上挂不住的 ' + data.length + ' 条知识点（理论型为主）：整条背下来，再点下面的锚点回时间线。';
-  }
-
   function render() {
     if (!inited) return;
     if (S.thTab === 'theory') renderTheory();
-    else if (S.thTab === 'sup') renderSup();
     else renderThreads();
     C.qsa('#view-threads .th-tabs button').forEach(function (b) {
       b.classList.toggle('on', b.dataset.tt === S.thTab);

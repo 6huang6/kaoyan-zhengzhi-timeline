@@ -104,13 +104,17 @@
       }, 70);
       return;
     }
+    if (kind === 'sup') {
+      W.App.view('outline');
+      if (W.OutlineView && W.OutlineView.focusNote) W.OutlineView.focusNote(id);
+      return;
+    }
     W.App.view('threads');
-    var tab = kind === 'ty' ? 'theory' : (kind === 'sup' ? 'sup' : 'thread');
+    var tab = kind === 'ty' ? 'theory' : 'thread';
     var tb = document.querySelector('[data-tt="' + tab + '"]');
     if (tb) tb.click();
     setTimeout(function () {
-      var sel = kind === 'ty' ? '[data-theory="' + id + '"]'
-        : (kind === 'sup' ? '[data-note="' + id + '"]' : '[data-thread="' + id + '"]');
+      var sel = kind === 'ty' ? '[data-theory="' + id + '"]' : '[data-thread="' + id + '"]';
       var e = document.querySelector(sel);
       if (e) { e.scrollIntoView({ block: 'center' }); e.classList.add('flash'); setTimeout(function () { e.classList.remove('flash'); }, 1400); }
     }, 70);

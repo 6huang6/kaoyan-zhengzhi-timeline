@@ -94,6 +94,7 @@ for (const n of master) {
 {
   const files = ['align-shigang.json', 'align-mao.json'];
   const nodesOl = [], gaps = [], extra = [];
+  const multi = {}, theory = {};
   for (const f of files) {
     const p = P('docs', f);
     if (!fs.existsSync(p)) continue;
@@ -102,6 +103,8 @@ for (const n of master) {
     for (const [id, ol] of Object.entries(a.map || {})) nodesOl.push({ id, ol });
     for (const g of a.gaps || []) gaps.push(g);
     for (const e of a.extra || []) extra.push(e);
+    for (const [id, ols] of Object.entries(a.multi || {})) multi[id] = (multi[id] || []).concat(ols);
+    for (const [tid, ols] of Object.entries(a.theory || {})) theory[tid] = (theory[tid] || []).concat(ols);
   }
   if (nodesOl.length) {
     const seenE = new Set();
@@ -111,7 +114,7 @@ for (const n of master) {
       seenE.add(k); return true;
     });
     fs.writeFileSync(P('data/gaps.js'),
-      'window.GAPS=' + JSON.stringify({ nodes: nodesOl, gaps, extra: extraU }) + ';\n', 'utf8');
+      'window.GAPS=' + JSON.stringify({ nodes: nodesOl, gaps, extra: extraU, multi, theory }) + ';\n', 'utf8');
     partStats.push({ file: 'gaps.js', n: new Set(nodesOl.map(x => x.id)).size, missing: [], note: `缺口 ${gaps.length} · 超纲 ${extraU.length}` });
   }
 }

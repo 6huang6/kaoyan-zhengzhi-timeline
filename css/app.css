@@ -844,14 +844,10 @@ body.has-detail .tl-stage{clip-path:inset(0 0 0 0)}
 .ol-head{padding:26px 34px 0;flex:0 0 auto}
 .ol-head h2{font-family:var(--serif);font-size:22px;font-weight:600;letter-spacing:.06em;margin:0 0 8px}
 .ol-head p{font-size:12.5px;color:rgba(33,29,24,.55);line-height:1.85;max-width:980px;margin:0}
-.ol-stats{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
-.ol-stat{flex:1 1 150px;min-width:140px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:rgba(253,251,246,.7)}
-.ol-stat b{display:block;font-family:var(--serif);font-size:24px;line-height:1.1;color:var(--ink);font-variant-numeric:tabular-nums}
-.ol-stat b i{font-style:normal;font-size:12px;color:rgba(33,29,24,.4);margin-left:2px}
-.ol-stat span{font-size:11.5px;color:rgba(33,29,24,.5);letter-spacing:.04em}
-.ol-stat.red b{color:var(--red-ink)}
-.ol-body{flex:1;overflow-y:auto;padding:16px 34px 40px}
-.ol-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;position:sticky;top:0;padding:8px 0;background:linear-gradient(to bottom,var(--paper) 78%,rgba(247,243,234,0));z-index:3}
+.ol-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:14px 34px 12px;flex:0 0 auto;border-bottom:1px solid var(--line)}
+.ol-main{flex:1 1 auto;min-height:0;display:flex}
+.ol-tree{flex:0 0 262px;min-width:0;overflow-y:auto;border-right:1px solid var(--line);padding:10px 8px 60px;background:rgba(253,251,246,.55)}
+.ol-body{flex:1 1 auto;min-width:0;overflow-y:auto;padding:14px 26px 70px}
 .ol-seg{font:inherit;font-size:12.5px;color:var(--ink);background:rgba(33,29,24,.04);border:1px solid var(--line);
   border-radius:999px;padding:6px 12px;cursor:pointer;transition:background .18s var(--ease),color .18s}
 .ol-seg i{font-style:normal;font-size:11px;opacity:.55;margin-left:5px}
@@ -866,52 +862,102 @@ body.has-detail .tl-stage{clip-path:inset(0 0 0 0)}
 .ol-sug{margin:5px 0 0;font-size:12.5px;line-height:1.75;color:var(--blue)}
 .ol-ev{margin:6px 0 0;font-size:11.5px;line-height:1.7;color:rgba(33,29,24,.4);
   display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-@media (max-width:1100px){.ol-head{padding:20px 20px 0}.ol-body{padding:12px 20px 32px}.ol-stat b{font-size:20px}}
+@media (max-width:1100px){.ol-head{padding:20px 20px 0}.ol-bar{padding:12px 20px 10px}.ol-body{padding:12px 18px 50px}}
+@media (max-width:980px){.ol-tree{display:none}}
 
 /* 大纲出处独占一行 */
 .d-meta .ol{flex:1 1 100%;margin-top:1px;font-size:11px;letter-spacing:.01em}
 
-/* ===================== 大纲补遗（脉络视图第三页 + 详情内挂载） ===================== */
-.sup-wrap{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:14px;align-items:start;padding-bottom:40px}
-.sup-group{grid-column:1/-1;display:flex;align-items:baseline;gap:10px;margin:10px 0 0;font-family:var(--serif);font-size:17px;letter-spacing:.06em;color:var(--red-ink);border-bottom:1px solid rgba(176,141,87,.28);padding-bottom:6px}
-.sup-group .k{font-size:11px;letter-spacing:.04em;color:var(--gold);font-family:var(--sans)}
-.sup-card{background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:14px 16px 12px;box-shadow:0 1px 2px rgba(33,29,24,.03)}
-.sup-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-.sup-head b{font-family:var(--serif);font-size:15px;letter-spacing:.02em;line-height:1.5}
-.sup-ol{font-size:10.5px;color:var(--red-ink);letter-spacing:.02em;border:1px solid rgba(168,50,45,.22);border-radius:3px;padding:0 5px;background:rgba(168,50,45,.04)}
-.sup-star{margin-left:auto;font-size:10px;letter-spacing:-1px;color:var(--gold)}
-.sup-main{font-size:12.5px;line-height:1.85;color:rgba(33,29,24,.9);letter-spacing:.01em}
-.sup-main br{content:'';display:block;margin:2px 0}
-.sup-tip,.sup-mix{margin-top:8px;font-size:12px;line-height:1.8;padding:7px 10px;border-radius:4px}
-.sup-tip{background:rgba(168,50,45,.045);color:rgba(33,29,24,.86)}
-.sup-mix{background:rgba(44,93,124,.05);color:rgba(33,29,24,.82)}
-.sup-tip .tag-lbl,.sup-mix .tag-lbl{font-style:normal;font-size:10px;letter-spacing:.1em;color:var(--gold);border:1px solid rgba(176,141,87,.4);border-radius:3px;padding:0 4px;margin-right:5px}
-.sup-kw{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
-.sup-kw .kw{font-size:11px;color:rgba(33,29,24,.62);background:rgba(33,29,24,.045);border:1px solid transparent;border-radius:11px;padding:1px 8px;cursor:pointer;transition:all .18s var(--ease)}
-.sup-kw .kw:hover{color:var(--red-ink);background:rgba(168,50,45,.08);border-color:rgba(168,50,45,.18)}
-.sup-anchor{margin-top:8px;font-size:11px;color:rgba(33,29,24,.45);display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.sup-ev{margin-top:8px;font-size:10.5px;line-height:1.6;color:rgba(33,29,24,.34);border-top:1px dashed rgba(33,29,24,.08);padding-top:6px;word-break:break-all}
-.sup-card.flash{animation:flashBg 1.2s var(--ease)}
+/* ===================== 大纲逐条对照：左树 + 右对照 ===================== */
+/* 左：大纲章节树 */
+.olt-ch{display:flex;gap:8px;align-items:baseline;margin:14px 6px 4px;font-family:var(--serif);font-size:12.5px;color:var(--ink-2);letter-spacing:.03em}
+.olt-ch:first-child{margin-top:4px}
+.olt-ch .k{margin-left:auto;font-family:var(--sans);font-size:10.5px;color:var(--ink-4);font-variant-numeric:tabular-nums}
+.olt-sec{display:flex;gap:7px;align-items:baseline;width:100%;text-align:left;font:inherit;font-size:12px;color:var(--ink-2);
+  background:none;border:0;border-radius:6px;padding:4px 8px;cursor:pointer;line-height:1.5;transition:background .15s}
+.olt-sec:hover{background:rgba(33,29,24,.05)}
+.olt-sec.on{background:rgba(168,50,45,.08);color:var(--red-ink)}
+.olt-sec .dot{flex:0 0 7px;width:7px;height:7px;border-radius:50%;transform:translateY(-1px)}
+.olt-sec .no{flex:0 0 auto;font-size:10.5px;color:var(--ink-4);font-variant-numeric:tabular-nums}
+.olt-sec .t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.olt-sec.st-covered .dot{background:#2c5d7c}
+.olt-sec.st-note .dot{background:var(--gold)}
+.olt-sec.st-theory .dot{background:#7a5c8a}
+.olt-sec.st-missing .dot{background:rgba(168,50,45,.55)}
+/* 右：章标题与节卡 */
+.oc-ch-h{display:flex;align-items:baseline;gap:10px;margin:20px 2px 8px;font-family:var(--serif);font-size:16px;letter-spacing:.04em;color:var(--ink)}
+.oc-ch-h .cn{color:var(--red-ink);font-size:13px}
+.oc-ch-h .k{margin-left:auto;font-family:var(--sans);font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.oc-ch-extra{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start;margin:0 2px 10px;font-size:11px;color:var(--ink-3)}
+.oc-ch-extra .lbl,.oc-line .lbl{flex:0 0 auto;font-size:10.5px;color:var(--ink-4);letter-spacing:.06em;padding-top:3px}
+.oc-ch-extra .oc-note{flex:1 1 100%}
+.oc-sec{border:1px solid var(--line);border-radius:10px;background:rgba(253,251,246,.7);margin-bottom:10px;box-shadow:0 1px 2px rgba(33,29,24,.03)}
+.oc-sec-h{display:flex;align-items:baseline;gap:10px;padding:11px 14px;cursor:pointer;user-select:none}
+.oc-sec-h .no{flex:0 0 auto;font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.oc-sec-h b{font-family:var(--serif);font-size:14px;font-weight:600;letter-spacing:.02em;line-height:1.5}
+.oc-badge{flex:0 0 auto;margin-left:auto;font-size:10.5px;letter-spacing:.03em;border-radius:10px;padding:1px 8px;border:1px solid;white-space:nowrap}
+.oc-badge.covered{color:#2c5d7c;border-color:rgba(44,93,124,.35);background:rgba(44,93,124,.07)}
+.oc-badge.note{color:#8a6d3d;border-color:rgba(176,141,87,.4);background:rgba(176,141,87,.08)}
+.oc-badge.theory{color:#7a5c8a;border-color:rgba(122,92,138,.35);background:rgba(122,92,138,.07)}
+.oc-badge.missing{color:var(--red-ink);border-color:rgba(168,50,45,.3);background:rgba(168,50,45,.05)}
+.oc-caret{flex:0 0 auto;font-size:10px;color:var(--ink-4);transition:transform .18s var(--ease)}
+.oc-sec.open>.oc-sec-h .oc-caret,.oc-note.open .oc-note-h .oc-caret{transform:rotate(90deg)}
+.oc-sec-b{display:none;grid-template-columns:minmax(240px,2fr) minmax(300px,3fr);gap:20px;padding:4px 14px 14px;border-top:1px dashed var(--line)}
+.oc-sec.open .oc-sec-b{display:grid}
+.oc-col h5{margin:8px 0 0;font-size:10.5px;letter-spacing:.14em;color:var(--gold);font-weight:600}
+.oc-items{margin:6px 0 0;padding-left:17px}
+.oc-items li{font-size:12.5px;line-height:1.95;color:rgba(33,29,24,.85);letter-spacing:.01em}
+.oc-items li::marker{color:var(--gold);font-size:11px}
+.oc-line{display:flex;flex-wrap:wrap;gap:6px;align-items:flex-start;margin-top:8px}
+.oc-thy{font:inherit;font-size:11px;color:#7a5c8a;background:rgba(122,92,138,.06);border:1px solid rgba(122,92,138,.28);border-radius:5px;padding:2.5px 7px;cursor:pointer;transition:.15s}
+.oc-thy:hover{background:rgba(122,92,138,.14)}
+/* 补遗卡内联 */
+.oc-note{border:1px solid rgba(176,141,87,.32);border-radius:8px;background:rgba(176,141,87,.05);margin-top:8px;overflow:hidden}
+.oc-note-h{display:flex;align-items:baseline;gap:8px;width:100%;text-align:left;font:inherit;padding:8px 11px;cursor:pointer;background:none;border:0}
+.oc-note-h .tg{flex:0 0 auto;font-size:10px;letter-spacing:.1em;color:#8a6d3d;border:1px solid rgba(176,141,87,.45);border-radius:3px;padding:0 4px}
+.oc-note-h b{font-family:var(--serif);font-size:13px;line-height:1.5}
+.oc-note-h .st{margin-left:auto;font-style:normal;font-size:10px;letter-spacing:-1px;color:var(--gold)}
+.oc-note-b{display:none;padding:0 11px 10px;border-top:1px dashed rgba(176,141,87,.25)}
+.oc-note.open .oc-note-b{display:block}
+.oc-main{margin:8px 0 0;font-size:12.5px;line-height:1.9;color:rgba(33,29,24,.9)}
+.oc-main br{content:'';display:block;margin:2px 0}
+.oc-tip,.oc-mix{margin-top:7px;font-size:12px;line-height:1.8;padding:7px 10px;border-radius:4px}
+.oc-tip{background:rgba(168,50,45,.045);color:rgba(33,29,24,.86)}
+.oc-mix{background:rgba(44,93,124,.05);color:rgba(33,29,24,.82)}
+.oc-tip .tag-lbl,.oc-mix .tag-lbl{font-style:normal;font-size:10px;letter-spacing:.1em;color:var(--gold);border:1px solid rgba(176,141,87,.4);border-radius:3px;padding:0 4px;margin-right:5px}
+.oc-kw{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.oc-kw button{font:inherit;font-size:11px;color:rgba(33,29,24,.62);background:rgba(33,29,24,.045);border:0;border-radius:11px;padding:1px 8px;cursor:pointer;transition:all .18s var(--ease)}
+.oc-kw button:hover{color:var(--red-ink);background:rgba(168,50,45,.08)}
+.oc-anchor{margin-top:8px;font-size:11px;color:rgba(33,29,24,.45);display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.oc-ev{margin-top:8px;font-size:10.5px;line-height:1.65;color:rgba(33,29,24,.36);border-top:1px dashed rgba(33,29,24,.08);padding-top:6px;word-break:break-all}
+.oc-empty{margin:8px 0 0;font-size:12px;line-height:1.8;color:rgba(33,29,24,.45)}
+.oc-sec.flash,.oc-note.flash{animation:flashBg 1.2s var(--ease)}
+/* 工具条小件 */
+.oc-q{font:inherit;font-size:12px;padding:5px 10px;border:1px solid var(--line);border-radius:8px;background:rgba(253,251,246,.8);min-width:230px;color:var(--ink)}
+.oc-q:focus{outline:none;border-color:rgba(168,50,45,.4)}
+.oc-chip{font:inherit;font-size:11.5px;padding:4px 10px;border:1px solid var(--line);border-radius:8px;background:rgba(33,29,24,.03);cursor:pointer;color:var(--ink-2);transition:.15s}
+.oc-chip:hover{background:rgba(168,50,45,.07)}
+.oc-chip.on{background:var(--red);border-color:var(--red);color:#fff}
+/* 本库有、大纲未单列 */
+@media (max-width:1100px){.oc-sec-b{grid-template-columns:1fr}}
 @keyframes flashBg{0%{box-shadow:0 0 0 2px rgba(168,50,45,.35)}100%{box-shadow:0 0 0 0 rgba(168,50,45,0)}}
 
 /* 详情面板内挂载的补遗 */
 .d-notes{margin-top:14px;border-top:1px solid rgba(176,141,87,.26);padding-top:12px}
 .d-notes>h4{font-size:11px;letter-spacing:.22em;color:var(--gold);font-weight:400;margin-bottom:8px}
 .d-notes>h4 .k{letter-spacing:0;color:rgba(33,29,24,.35);margin-left:4px}
-.d-note{background:rgba(176,141,87,.05);border:1px solid rgba(176,141,87,.22);border-radius:5px;padding:10px 12px;margin-bottom:10px}
+.d-notes .d-note{background:rgba(176,141,87,.05);border:1px solid rgba(176,141,87,.22);border-radius:5px;padding:10px 12px;margin-bottom:10px}
 .d-note>b{display:block;font-family:var(--serif);font-size:13.5px;line-height:1.5;margin-bottom:6px;color:var(--ink)}
 .d-note-x{font-size:12px;line-height:1.8;color:rgba(33,29,24,.85)}
 .d-note-t,.d-note-m{margin-top:7px;font-size:11.5px;line-height:1.75;color:rgba(33,29,24,.72)}
 .d-note-t .tag-lbl,.d-note-m .tag-lbl{font-style:normal;font-size:10px;letter-spacing:.1em;color:var(--gold);border:1px solid rgba(176,141,87,.4);border-radius:3px;padding:0 4px;margin-right:5px}
 .d-note-m{color:rgba(44,93,124,.9)}
-@media (max-width:1100px){.sup-wrap{grid-template-columns:1fr}}
 
 /* 考纲页：已补/待补标记 */
 .ol-done{border:1px solid rgba(44,93,124,.35);background:rgba(44,93,124,.07);color:#2c5d7c;font-size:11px;border-radius:11px;padding:1px 9px;cursor:pointer;letter-spacing:.02em;flex:0 0 auto}
 .ol-done:hover{background:rgba(44,93,124,.14)}
 .ol-todo{font-size:11px;color:rgba(33,29,24,.3);border:1px dashed rgba(33,29,24,.14);border-radius:11px;padding:1px 9px;flex:0 0 auto}
 .ol-row.done{opacity:.82}
-.ol-stat.ok b{color:#2c5d7c}
 .ol-row-main{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 
 /* ============================ 平板 / 触屏适配 ============================ */
@@ -973,7 +1019,6 @@ body.has-detail .tl-stage{clip-path:inset(0 0 0 0)}
   .home{flex-direction:column}
   .home-go{position:static;left:auto;right:auto;bottom:auto;margin:4px auto 26px}
   .map-side{width:210px}
-  .ol-stats{grid-template-columns:repeat(2,1fr)}
 }
 
 
@@ -1018,7 +1063,7 @@ body.has-detail .tl-stage{clip-path:inset(0 0 0 0)}
   .d-sec h4,.d-sec h5{font-size:11px}
   .d-meta{font-size:11px;gap:0 6px}
   .d-foot{padding:10px 16px 14px}
-  .d-foot .note{display:none}
+  .d-foot .d-note{display:none}
 
   /* 地图：竖排，图在上、地名列表在下（限高滚动） */
   #view-map{flex-direction:column-reverse}
@@ -1040,9 +1085,6 @@ body.has-detail .tl-stage{clip-path:inset(0 0 0 0)}
   .ct-card{overflow-x:auto}
   .ct-table{min-width:520px}
   .ct-table th,.ct-table td{padding:6px 8px}
-  .ol-stats{grid-template-columns:repeat(2,1fr);gap:8px}
-  .ol-stat{padding:10px 12px}
-  .ol-stat b{font-size:19px}
   .ol-row{padding:11px 12px}
   .ol-row-main{flex-wrap:wrap;gap:5px}
   .th-tabs button,.pill-tabs button{font-size:12px;padding:6px 10px}

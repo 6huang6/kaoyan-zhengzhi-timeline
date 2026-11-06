@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
@@ -103,7 +103,6 @@
       <div class="th-tabs">
         <button data-tt="thread" class="on">专题线索</button>
         <button data-tt="theory">理论专题</button>
-        <button data-tt="sup">大纲补遗</button>
       </div>
       <p class="th-sub" id="thSub"></p>
     </div>
@@ -120,14 +119,17 @@
     <div class="ct-grid" id="ctGrid"></div>
   </section>
 
-  <!-- ================= 考纲 ================= -->
+  <!-- ================= 大纲对照 ================= -->
   <section class="view" id="view-outline">
     <div class="ol-head">
-      <h2>考纲对齐</h2>
+      <h2>大纲逐条对照</h2>
       <p id="olSub"></p>
-      <div class="ol-stats" id="olStats"></div>
     </div>
-    <div class="ol-body" id="olBody"></div>
+    <div class="ol-bar" id="olBar"></div>
+    <div class="ol-main">
+      <aside class="ol-tree" id="olTree" aria-label="大纲章节导航"></aside>
+      <div class="ol-body" id="olBody"></div>
+    </div>
   </section>
 </main>
 
@@ -175,7 +177,7 @@
       <span>·</span>
       <button data-link="contrast">易混辨析</button>
       <span>·</span>
-      <button data-link="outline">考纲缺口清单</button>
+      <button data-link="outline">大纲逐条对照</button>
     </div>
     <div class="home-foot">
       <p id="homeSources"></p>
@@ -213,6 +215,7 @@
 <script src="data/theory.js"></script>
 <script src="data/gaps.js"></script>
 <script src="data/supplements.js"></script>
+<script src="data/outline.js"></script>
 <script src="js/core.js"></script>
 <script src="js/geo.js"></script>
 <script src="js/timeline.js"></script>
